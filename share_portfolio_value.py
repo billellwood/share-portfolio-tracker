@@ -23,7 +23,7 @@ class StockTransaction:
         self.total_value = (self.units * self.cost_price) - self.fee
         
     def get_data(self):
-        data = yf.download(self.tkr, start = self.date, end = todays_date.strftime('%Y-%m-%d'), 		  interval = "1d")
+        data = yf.download(self.tkr, start = self.date, end = todays_date.strftime('%Y-%m-%d'), interval = "1d")
         data['Holdings value'] = data['Close'] * self.units
         data.loc[self.date, 'Holdings value'] = self.units * self.cost_price - self.fee
         return data
